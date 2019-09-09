@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2>{{message|date-format('yyyy-mm-dd')}}</h2>
+    <!-- <h2>{{message|date-format(message,'yyyy-mm-dd')}}</h2> -->
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    //过滤器一定要在VUE实例初始化之前注册
+    Vue.filter('date-format', function (input, pattern = '') {
+      let dt = new Date(input);
+      // 获取年月日
+      let y = dt.getFullYear();
+      let m = (dt.getMonth() + 1).toString().padStart(2, '0');
+      let d = dt.getDate().toString().padStart(2, '0');
+      // 获取时分秒
+      let hh = dt.getHours().toString().padStart(2, '0');
+      let mm = dt.getMinutes().toString().padStart(2, '0');
+      let ss = dt.getSeconds().toString().padStart(2, '0');
+      // 如果 传递进来的字符串类型，转为小写之后，等于 yyyy-mm-dd，那么就返回 年-月-日
+      // 否则，就返回  年-月-日 时：分：秒
+      if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+        return `${y}-${m}-${d}`;
+      } else {
+        //ES6语法
+        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+      }
+    });
+
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        message: new Date()
+      },
+      filters: { // 私有局部过滤器，只能在 当前 VM 对象所控制的 View 区域进行使用
+        dataFormat: function (input, pattern = "") { // 在参数列表中 通过 pattern="" 来指定形参默认值
+
+        }
+      }
+    })
+
+
+
+  </script>
+</body>
+
+</html>

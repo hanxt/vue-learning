@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <button>测试1</button>
+    <button>测试2</button>
+    <button>测试3</button>
+  </div>
+  
+  <script>
+    let noParam = function(){
+      return 7;
+    }
+    let noParamA = () => 7;
+
+    let sum = function(num1,num2){
+      return num1 + num2;
+    } 
+    var sumA = (num1,num2) => num1 + num2;
+
+    let sumAdd5 = function(num1,num2){
+      num1 = num1 + 5;
+      num2 = num2 + 5;
+      return num1 + num2;
+    } 
+    let sumAdd5A = (num1,num2) => {
+      num1 = num1 + 5;
+      num2 = num2 + 5;
+      return num1 + num2;
+    }
+
+    console.log(this === window); // true
+    console.log(this.document === document); // true
+
+    function test1(){
+      return this;
+    }
+    console.log(test1() == window);  //true
+    console.log(window.test1() == window);  //true
+
+    function test2(){
+      "use strict"  //使用严格模式
+      return this;
+    }
+    console.log(test2() == undefined);  //true
+    console.log(window.test2() == window);  //true
+
+
+
+
+    class Player{
+      constructor(nickname,age){
+        this.nickname = nickname;
+        this.age = age;
+      }
+
+      // toPrint(){
+      //   window.setTimeout(function(){
+      //     console.log(this.nickname + "---" + this.age)
+      //   }, 1000);
+      // }
+
+
+      // toPrint(){
+      //   let _this = this
+      //   window.setTimeout(function(){
+      //     console.log(_this.nickname + "---" + _this.age)
+      //   }, 1000);
+      // }
+
+
+      // toPrint(){
+      //   window.setTimeout(function(){
+      //     console.log(this.nickname + "---" + this.age)
+      //   }.bind(this), 1000);
+      // }
+
+      toPrint(){
+        window.setTimeout(() =>{
+          console.log(this.nickname + "---" + this.age)
+        }, 1000);
+      }
+
+    }
+    let player1 = new Player("james",35);
+    player1.toPrint()  
+    
+
+  </script>
+</body>
+
+</html>

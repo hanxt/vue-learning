@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <button>测试1</button>
+    <button>测试2</button>
+    <button>测试3</button>
+  </div>
+  
+  <script>
+    //数组解构赋值
+    let [player1,player2,player3] = ["curry","james","kobe"]
+    console.log(player2) //james
+    //规则模式匹配，嵌套数组解构赋值
+    let [player4,[[player5],player6]] = ["curry",[["james"],"kobe"]]
+    console.log(player5)  //james
+    //非规则模式匹配，嵌套数组解构赋值
+    let [player7,[[player8],player9]] = ["curry",[["james","jordan"],"kobe"]]
+    console.log(player7)  //curry
+    console.log(player8)  //james
+    console.log(player9)  //kobe
+    //数组解构数组赋值
+    let [player10, ...other] = ["curry","james","kobe"]
+    console.log(player10)  //curry
+    console.log(other)    //["james", "kobe"]
+    //数组解构，默认值设置
+    let [player11,player12="me"] = ["curry"]
+    console.log(player11)  //curry
+    console.log(player12)  //me
+
+    let {age:age,name:name} = {name:"james",age:35}
+    //对象的解构赋值,变量名对上即可，顺序不重要
+    //简写形式:  let {age,name} = {name:"james",age:35}
+    console.log(name + "----" + age) //james-35
+
+    //对象方法的解构
+    let {sqrt ,sin ,cos} = Math
+    console.log(sqrt(4))  //2
+
+    let [a1,a2,a3] = "curry"
+    console.log(a1) //c
+    console.log(a2) //u
+    console.log(a3) //r
+
+    //一个复杂点的例子，对象解构赋值，在函数参数上的应用
+    function add([{name:name1,age:age1},{name:name2,age:age2}]){
+      return age1 + age2
+    }
+    console.log(add([{name:"james",age:35},{name:"curry",age:31}])) //66 
+
+    //利用变量解构进行，数据交换（想一想如果没有变量解构，数据交换怎么写？）
+    let  a = 2;
+    let  b = 3;
+    [a,b] = [b,a]
+    console.log(a + "-------" + b) //3-------2
+
+    //介绍ES6的一种新数据类型map
+    let map1 = new Map();
+    map1.set("p1","curry")
+    map1.set("p2","james")
+    //遍历map数据结构的key和value
+    for(let [key,value] of map1){
+      console.log(`${key}----${value}`) //Es6模板字符串
+      console.log(key + "----" + value) //同样的效果
+    }
+
+  </script>
+</body>
+
+</html>

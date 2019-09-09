@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <button>测试1</button>
+    <button>测试2</button>
+    <button>测试3</button>
+  </div>
+  
+  <script>
+    //作用域代码
+    if(true){
+      //externalVal没有作用域
+      var externalVal = "externalVal";
+    }
+    function domainTest(){
+      var funVal ="funVal";
+      //这里可以访问到externalVal和funVal
+      console.log(externalVal + "----" + funVal);
+    }
+    domainTest()
+    if(true){
+      console.log(externalVal); //可以访问到externalVal
+      //console.log(funVal); 这一行访问不到变量，报错
+    }
+
+    //使用var定义变量的局限性
+    var btns = document.getElementsByTagName('button')
+    // for(var i = 0;i < btns.length;i++){
+    //   btns[i].onclick = function(){
+    //     console.log("点击了第" + i + "个按钮")
+    //   }
+    // }
+
+    // for(var i = 0;i < btns.length;i++){
+    //   (function(i){
+    //     btns[i].onclick = function(){
+    //       console.log("点击了第" + i + "个按钮")
+    //     }
+    //   })(i)
+    // }
+
+
+    for(let i = 0;i < btns.length;i++){
+      btns[i].onclick = function(){
+        console.log("点击了第" + i + "个按钮")
+      }
+    }
+
+  </script>
+</body>
+
+</html>

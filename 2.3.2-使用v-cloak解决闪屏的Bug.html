@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+  <style>
+      [v-cloak]{
+        display: none
+      }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h2 v-cloak>你好啊，{{message}}</h2>
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        message: 'VUE'
+      }
+    })
+  </script>
+
+</body>
+
+</html>

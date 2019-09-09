@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+  
+  <script>
+    // function Player(name,age){
+    //   this.name = name;
+    //   this.age = age;
+    // }
+    // Player.prototype.toPrint = function(){
+    //   console.log(this.name + "---" + this.age)
+    // }
+    // var player1 = new Player("james",35);
+    // var player2 = new Player("kobe",39);
+    // player1.toPrint()  //james---35
+    // player2.toPrint()  //kobe---39
+
+
+    class Player{
+      
+      constructor(name,age){
+        console.log(name + 'fdasfada' + age)
+        this.name = name;
+        this.age = age;
+      }
+
+      toPrint(){
+        console.log(this.name + "---" + this.age)
+      }
+    }
+    let player1 = new Player("james",35);
+    player1.toPrint()  //james---35
+
+    class BestPlayer extends Player{
+      constructor(){
+        super()
+        this.name = "jordan"
+        this.age = 49
+      }
+    }
+    let bestPlayer = new BestPlayer();
+    bestPlayer.toPrint()  //jordan---49
+
+    // let name = "curry"
+    // let age = 33
+    // let player3 = {
+    //   name :name,
+    //   age : age,
+    //   toPrint:function(){
+    //     console.log(player3) //{name: "curry", age: 33}
+    //   }
+    // }
+    // player3.toPrint() //{name: "curry", age: 33, toPrint: ƒ}
+
+
+    let name = "curry"
+    let age = 33
+    let player3 = {
+      name,
+      age,
+      toPrint(){
+        console.log(player3) //{name: "curry", age: 33}
+      }
+    }
+    player3.toPrint() //{name: "curry", age: 33, toPrint: ƒ}
+    
+
+  </script>
+</body>
+
+</html>

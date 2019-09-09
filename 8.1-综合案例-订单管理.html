@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>综合案例-订单管理</title>
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+
+    
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">订单管理</h3>
+        </div>
+        <div class="panel-body">
+          
+          <label for="brand" class="col-sm-2">
+            品牌：<input type="text" id="brand" v-model="brandQueryParam">
+          </label>
+          
+          <button type="button" class="btn  btn-primary" @click="queryByBrand()">查询</button>
+          
+        </div>
+    </div>
+    
+    
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th>品牌</th>
+            <th>订单日期</th>
+            <th>订单价格（万元）</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr v-for="(item,index) in orders" :key="item.id">
+            <td>{{item.brand}}</td>
+            <td>{{item.orderDate| yyyymmdd}}</td>
+            <td>{{item.price}}</td>
+            <td>
+              <button @click="incr(index)">+</button> 
+              {{item.num}} 
+              <button @click="decr(index)" v-bind:disabled="item.num <= 1">-</button>
+            </td>
+            <td><button @click="delOrder(index)">删除</button></td>
+          </tr>
+        </tbody>
+        
+        <tfoot>
+          <tr>
+            <th>订单总额为{{totalPrice}}万元</th>
+          </tr>
+        </tfoot>
+       
+      </table>
+      
+    </div>
+
+
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <legend>新增订单</legend>
+      
+        <div class="form-group">
+          <label >品牌</label>
+          <input v-model="brand" type="text" class="form-control"  placeholder="如：宝马，奔驰">
+        </div>
+        <div class="form-group">
+          <label >价格（万元）</label>
+          <input v-model="price" type="text" class="form-control"  placeholder="如：50">
+        </div>
+        <div class="form-group">
+          <label >数量</label>
+          <input v-model="num" type="text" class="form-control"  placeholder="如：3">
+        </div>
+      
+        <button @click="addOrder" type="submit" class="btn btn-primary">提交</button>      
+    </div>
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    //过滤器一定要在VUE实例初始化之前注册
+    Vue.filter('yyyymmdd', function (input) {
+      let dt = new Date(input);
+      // 获取年月日
+      let y = dt.getFullYear();
+      let m = (dt.getMonth() + 1).toString().padStart(2, '0');
+      let d = dt.getDate().toString().padStart(2, '0');
+      
+      return `${y}-${m}-${d}`;
+    });
+
+    const app = new Vue({ 
+      el: '#app',     
+      data: { 
+        id: 0,   //订单id
+        brand: "", //订单品牌
+        price: 0,  //订单价格
+        num: 0,  //订单数量
+        orders:[],
+        brandQueryParam: "" //查询参数：品牌
+      },
+      methods:{
+        delOrder(index){
+          this.orders.splice(index,1)
+        },
+        incr(index){
+          console.log(index)
+          this.orders[index].num++
+        },
+        decr(index){
+          this.orders[index].num--
+        },
+        addOrder(){
+          this.orders.push({
+            id: this.id++,
+            brand: this.brand,
+            orderDate: new Date(),
+            price: this.price,
+            num: this.num
+          })
+          this.brand = ""
+          this.price = this.num = 0
+        },
+        queryByBrand(){
+          // let _this = this
+          // this.orders = this.orders.filter(function(item){
+          //   return item.brand.includes(_this.brandQueryParam);
+          // })
+          this.orders = this.orders.filter(item => {return item.brand.includes(this.brandQueryParam)})
+        }
+      },
+      computed:{
+        totalPrice(){
+          return this.orders.reduce(function(preValue,item){
+            return preValue + item.price * item.num
+          },0)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

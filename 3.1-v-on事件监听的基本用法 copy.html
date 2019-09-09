@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-on事件监听方法传参</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>点击次数：{{counter}}</h2>
+    <button v-on:click="incr(step)">+</button>
+    <button v-on:click="decr(step,$event)">-</button>    
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        counter: 0,
+        step: 2
+      },
+      methods:{
+        incr(n){
+          this.counter = this.counter + n
+        },
+        decr(n,event){
+          this.counter = this.counter - n
+          console.log(event)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app"    style="background-color:aquamarine">
+    <label for="score">语文分数</label>
+    <input type="text" v-model="score" id="score">
+    <div v-if="score>=90">优秀</div>
+    <div v-else-if="score>=80">良好</div>
+    <div v-else-if="score>=60">及格</div>
+    <div v-else-if="score==0">还没出成绩</div>
+    <div v-else=>不及格</div>
+    <br/>
+    <button @click="isShow = !isShow">点击按钮切换是否显示</button>
+    <h1 v-show="isShow">被切换的内容</h1>
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        score: 0,    //语文成绩
+        message: "",  //语文成绩分级
+        isShow: true    //默认显示“被切换的内容”
+      }
+    })
+  </script>
+</body>
+
+</html>

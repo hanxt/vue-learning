@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <label for="fullName">fullName:</label>
+    <input type="text" v-model.lazy.trim="fullName" id="fullName">
+      
+    <h2>firstName是：{{firstName}}</h2>
+    <h2>lastName是：{{lastName}}</h2>
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        firstName: "",
+        lastName: ""
+      },
+      computed: {
+        fullName: {
+          set(newVal){
+            console.log(oldVal + "--" + newVal)
+            const twoName = newVal.split(' ')
+            this.firstName = twoName[0]
+            this.lastName = twoName[1]
+          },
+          get(){
+            return this.firstName + " " + this.lastName
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

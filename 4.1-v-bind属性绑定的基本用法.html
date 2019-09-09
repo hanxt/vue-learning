@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-bind属性绑定的基本用法</title>
+</head>
+<body>
+  <div id="app" style="background-color:aquamarine">
+    <a v-bind:href="'toutiao'">今日头条(v-bind:href)</a>
+    <br/>
+    <!--语法糖的写法-->
+    <a :href="toutiao">今日头条(语法糖的写法)</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        toutiao: 'https://www.toutiao.com'
+      }
+    })
+  </script>
+</body>
+</html>

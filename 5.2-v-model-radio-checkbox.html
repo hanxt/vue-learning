@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>谁将是2019赛季NBA常规赛MVP?</h2>
+    <p>你的预测是:{{mvp}}</p>
+    <label for="curry">库里</label>
+    <input id="curry" type="radio" v-model="mvp" value="库里">
+    <label for="james">詹姆斯</label>
+    <input id="james" type="radio" v-model="mvp" value="詹姆斯">
+    
+    <br/>
+
+    <h2>谁能入选2019赛季NBA最佳防守阵容?</h2>
+    <p>你的预测是:{{allDefensiveTeam}}</p>
+    <label for="james">詹姆斯
+        <input id="james" type="checkbox" v-model="allDefensiveTeam" value="詹姆斯">
+    </label>
+    <label for="howpingxie">维斯布鲁克
+        <input id="howpingxie" type="checkbox" v-model="allDefensiveTeam" value="维斯布鲁克">
+    </label>
+    <label for="howard">霍华德
+        <input id="howard" type="checkbox" v-model="allDefensiveTeam" value="霍华德">
+    </label>
+
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        mvp: '库里',
+        allDefensiveTeam:['詹姆斯','维斯布鲁克']
+      }
+    })
+  </script>
+</body>
+
+</html>

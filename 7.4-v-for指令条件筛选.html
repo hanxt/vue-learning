@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app"   style="background-color:aquamarine">
+       <!--数组的筛选-->
+      <label>
+          <input v-model="playerQueryParam" type="text"/>
+      </label>
+      <ul>
+        <li v-for="item in filterPlayers" :key="item.id">
+           id：{{item.id}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}
+        </li>
+      </ul>
+
+      <!--数组的部分渲染-->
+      <ul>
+        <div v-for="item in players" :key="item.id">
+          <li v-if="filterMethod(item)">
+                id：{{item.id}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}
+          </li>
+        </div>
+      </ul>
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        players: [
+          {id:1,name:"curry",age:31},
+          {id:2,name:"james",age:34},
+          {id:3,name:"kobe",age:38}
+        ],
+        playerQueryParam: ""
+      },
+      computed:{
+        filterPlayers() {
+          let _this = this;
+          return this.players.filter(function(player){
+            return player.name.includes(_this.playerQueryParam);
+          });
+        }
+      },
+      methods:{
+        filterMethod(item){
+          return item.name.includes(this.playerQueryParam);  //当id等于1返回值为true
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-bind属性绑定的基本用法</title>
+  <style>
+    .blue {
+      color: blue
+    }
+    .red {
+      color: red
+    }
+    .bold {
+      font-weight:800;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+      <div v-bind:class="cssArray">{{message}}</div>
+      <button v-on:click="changeColor">换颜色</button>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好，VUE',
+        cssArray: ['bold','blue'] //默认是蓝色
+      },
+      methods:{
+        changeColor(){
+          if(this.cssArray[1] !== 'blue'){//如果不是蓝色
+            this.cssArray.pop();
+            this.cssArray.push('blue');
+            //this.cssArray[1] = 'blue'
+          }else{
+            this.cssArray.pop();
+            this.cssArray.push('red');
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

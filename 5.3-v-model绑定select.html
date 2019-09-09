@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app" style="background-color:aquamarine">
+    <h2>谁将是2019赛季NBA常规赛MVP?</h2>
+    <p>你的预测是:{{mvp}}</p>
+    <select v-model="mvp">
+      <option value="库里">库里</option>
+      <option value="詹姆斯">詹姆斯</option>
+    </select>
+    <br/>
+
+    <h2>谁能入选2019赛季NBA最佳防守阵容?</h2>
+    <p>你的预测是:{{allDefensiveTeam}}</p>
+    <select v-model="allDefensiveTeam" multiple>
+      <option value="霍华德">霍华德</option>
+      <option value="维斯布鲁克">维斯布鲁克</option>
+      <option value="詹姆斯">詹姆斯</option>
+    </select>
+
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        mvp: '詹姆斯',
+        allDefensiveTeam:['詹姆斯','维斯布鲁克']
+      }
+    })
+  </script>
+</body>
+
+</html>

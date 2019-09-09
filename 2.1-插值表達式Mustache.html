@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>插值表达式Mustache</title>
+</head>
+
+<body>
+  <div id="app" style="background-color:aquamarine">
+    <!--mustache语法中,不仅仅可以直接写变量,也可以写简单的表达式-->
+    <h2>{{firstName.length}}（使用‘.’获取属性）</h2>
+    <h2>{{firstName + lastName}}（字符串拼接）</h2>
+    <h2>{{firstName + ' ' + lastName}}（注意名字中间的的空格）</h2>
+    <h2>{{firstName}} {{lastName}}（注意名字中间的空格）</h2>
+    <h2>{{age * 2}}（简单的算术表达式）</h2>
+    <h2>{{lastName == 'Curry' ? '真棒' : '还好'}}（三目运算）</h2>
+    <h2>{{lastName.split('rr').reverse().join(',')}}（使用javascript函数）</h2>
+    <h2>{{customMethod(lastName)}}(使用自定义的函数)</h2>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        firstName: 'Stephen',
+        lastName: 'Curry',
+        age: 13
+      },
+      methods:{
+        customMethod(str){
+          return str.split('rr').reverse().join(',')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

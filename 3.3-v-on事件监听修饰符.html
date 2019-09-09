@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  
+  <div id="app">
+    <div id="parent" @click="parentMethod">
+        冒泡讲解：父元素
+        <div id="child" @click.stop="childMethod">
+            冒泡讲解：子元素
+        </div>
+    </div>
+    <div id="parent2" @click.self="parentMethod">
+      冒泡讲解：父元素(self修饰符表示父元素不接受子元素传播的冒泡事件)
+      <div id="child2" @click="childMethod">
+          冒泡讲解：子元素
+      </div>
+    </div>
+    <a href="http://www.zimug.com" @click.stop.prevent="childMethod">字母哥博客</a>
+
+    <!--当回车键抬起的时候，触发childMethod函数-->
+    <input type="text" @keyup.enter="childMethod">
+
+    <!--.once修饰符表示被修饰的标签事件，只能被触发一次，第二次点击就无效-->
+    <button @click.once="childMethod">按钮</button>
+  </div>
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({ //初始化一个VUE实例
+      el: '#app',     // 用于页面渲染VUE实例的元素
+      data: { // 定义数据
+        message: 'VUE'
+      },
+      methods:{
+        parentMethod(){
+          console.log("父节点点击事件")
+        },childMethod(){
+          console.log("子节点点击事件")
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

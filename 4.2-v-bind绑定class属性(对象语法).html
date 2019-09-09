@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-bind属性绑定的基本用法</title>
+  <style>
+    .blue {
+      color: blue;
+    }
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+      <!--<h2 v-bind:class="{css类名1: true, css类名2: boolean}">{{message}}</h2>-->
+      <h2 v-bind:class="{blue: isBlue, red: isRed}">{{message}}</h2>
+      <h2 v-bind:class="getH2Class()">{{message}}</h2>
+      <button v-on:click="changeColor">换颜色</button>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好，VUE',
+        isBlue: true,
+        isRed: false
+      },
+      methods:{
+        getH2Class(){
+          return {blue: this.isBlue, red: this.isRed} 
+        },
+        changeColor(){
+          this.isBlue = !this.isBlue
+          this.isRed = !this.isRed
+        }
+      }
+    })
+  </script>
+</body>
+</html>

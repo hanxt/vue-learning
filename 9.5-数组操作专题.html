@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>你好啊，{{players}}</h2>
+  </div>
+  <script>
+    
+
+    //var players = new Array();
+    //let  players = new Array(20);   //length为20的数组
+    //let players = new Array("curry","james","kobe");  //创建带有三个初始化项的数组
+    //关键字new可以被省略
+    //let players = Array();
+    //let players = Array(20);
+    //let players = Array("curry","james","kobe");
+
+
+    //players.length = 4;   
+    //console.log(players[3]) 
+
+
+    ///let players = ["curry","james","kobe"];    //创建带有三个初始化项的数组  
+    //players[7] = "jordan";
+    //console.log(players.length);    //输出结果为8
+    //console.log(players[5])
+
+    // let players = Array.of("curry", "james", "kobe")
+    // console.log(players);
+
+
+    //console.log(players instanceof Array)
+    //console.log(Array.isArray(players))
+
+
+    // let players = ["curry","james","kobe"];    //创建带有三个初始化项的数组
+    // console.log(players.toString());   
+    // console.log(players.toLocaleString());
+    // console.log(players.join("&"));
+
+      
+
+    // let values = [1,2,5,10,19]
+    // values.reverse()
+    // console.log(values.toString())   //19,10,5,2,1
+    // values.sort()
+    // console.log(values.toString())   //1,10,19,2,5
+
+    // function compare(value1,value2){
+    //   return value1 - value2
+    // }
+    // values.sort(compare)
+    // console.log(values.toString())   //1,2,5,10,19
+
+
+    // let players = [{name:"james",age:36},
+    //               {name:"curry",age:31},
+    //               {name:"kobe",age:39}]
+    // function comparePlayer(player1,player2){
+    //   return player1.age  - player2.age
+    // }
+    // players.sort(comparePlayer)
+    // console.log(players)
+
+    // let players = ["curry","james","kobe"];
+    // let players2 = players.concat("jordan",["拉里伯德","魔术师"])
+    // console.log(players2)  //["curry", "james", "kobe", "jordan", "拉里伯德", "魔术师"]
+
+    // //数组下标从0开始
+    // //从第2项开始剪切到最后，["james", "kobe", "jordan", "拉里伯德", "魔术师"]
+    // console.log(players2.slice(1))   
+    // //从第2项开始剪切到第5项，不包含第5项。  ["james", "kobe", "jordan"]
+    // console.log(players2.slice(1,4)) 
+
+
+    // let players = ["curry","james","kobe"];
+    // //从下标为0的项开始，删除一项。
+    // players.splice(0,1)
+    // console.log(players)  // ["james", "kobe"]
+    // //从下标为1的项开始，删除0项，插入2项。相当于插入操作
+    // players.splice(1,0,"jordan","魔术师")
+    // console.log(players) //["james", "jordan", "魔术师", "kobe"]
+    // //从下标为1的项开始，删除1项，插入1项。相当于替换操作
+    // players.splice(1,1,"杜兰特")
+    // console.log(players) //["james", "杜兰特", "魔术师", "kobe"]
+
+    // let players = ["curry","james","kobe","james","curry"];
+    // //这两个方法在找不到数据时，返回-1
+    // console.log(players.indexOf("james"))    //1,从数组头部查找数据返回下标位置
+    // console.log(players.lastIndexOf("james"))  //3,从数组末尾查找数据返回下标位置
+    // //查找符合条件的第一个数组成员,找不到返回undefined
+    // // let findOne = players.find(function(value,index,arr){
+    // //   return value.includes("cu")
+    // // })
+    // //let findOne = players.find((value) => value.includes("cu"))
+    // console.log(findOne)   //curry
+    // //查找符合条件的第一个数组成员下标，找不到返回-1
+    // let findOneIndex = players.findIndex(function(value,index,arr){
+    //   return value.includes("cu")
+    // })
+    // console.log(findOneIndex)   //0
+
+
+    // let players = ["curry","james","kobe"];
+    // for(index in players){
+    //   console.log(index + ":" + players[index])
+    // }
+    // for(player in players){
+    //   console.log(player)
+    // }
+
+    // let players = [{name:"james",age:36},
+    //               {name:"curry",age:31},
+    //               {name:"kobe",age:39}]
+    // //every方法，判断是否数组每一个对象的年龄都大于30
+    // // let isGt30 = players.every(function(value,index,arr){
+    // //   return value.age > 30
+    // // })
+    // let isGt30 = players.every((value) => value.age > 30)
+    // console.log(isGt30)  //true
+    // //some方法，判断是否数组中有至少一个对象的名字包含cu
+    // // let isContainCu = players.some(function(value,index,arr){
+    // //   return value.name.includes("cu")
+    // // })
+    // let isContainCu = players.some((value) => value.name.includes("cu"))
+    // console.log(isContainCu)  //true
+
+
+    // let players = [{name:"james",age:36,champions:3},
+    //               {name:"curry",age:31,champions:3},
+    //               {name:"kobe",age:39,champions:5}]
+    
+    // players.forEach(function(value,index,array){
+    //    //这个方法没有返回值，可以在这里执行一些操作，比如渲染一个table
+    //    console.log(`<tr>${value.name}</tr>`) 
+    // })
+
+    //过滤数组中所有年龄大于30的球员，返回值也是一个数组
+    // let ageGt30Players = players.filter(function(value,index,array){
+    //   return value.age > 30
+    // })
+    // console.log(ageGt30Players) //数组所有球员年龄都大于30，所以ageGt30Players = players
+    // //将数组的中所有人的年龄都减小5岁
+    // let young5Plauers = ageGt30Players.map(function(value,index,array){
+    //   return {name:value.name, age:value.age - 5, champions:value.champions}
+    // })
+    // console.log(young5Plauers)  //球员对象的年龄变为31,26,34
+    // //计算数组中球员，总冠军的数量
+    // let championsNums = young5Plauers.reduce(function(prev,value,index,array){
+    //   return prev + value.champions
+    // },0)
+    // console.log(championsNums)  //11,三位球员的总冠军数量
+
+    // let championsNums = players.filter(value => value.age > 30)
+    //                            .map(value => {return {name:value.name, age:value.age - 5, champions:value.champions}})
+    //                            .reduce((prev,value) => prev + value.champions ,0 )
+    // console.log(championsNums)  //11,三位球员的总冠军数量
+
+    // let playersObje = {'0':"curry",'1':"james",'2':"kobe",length:3};
+    // let players = Array.from(playersObje);
+    // console.log(players)   //["curry", "james", "kobe"]
+
+    // let playersSet = new Set(['curry','james','curry'])
+    // players = Array.from(playersSet);
+    // console.log(players) //["curry", "james"],Set可以去重
+
+    // //输出结果为[3, 4, 2, 3, 4]
+    // console.log([0,1,2,3,4].copyWithin(0,3,5))
+
+
+
+    // let players = ["curry","james","kobe"];
+    // for(let index of players.keys()){
+    //   console.log(index) //打印是0,1,2
+    // }
+    // for(let elem of players.values()){
+    //   console.log(elem)   //打印是"curry","james","kobe"
+    // }
+    // for(let [index,elem] of players.entries()){
+    //   console.log(index,elem)   //打印如下
+    // }
+    // //0 "curry"
+    // //1 "james"
+    // //2 "kobe"
+
+    let numbers = [1,2,3];
+    let squares = [for (x of numbers) x*x];   //[1,4,9]
+    // let squaresGenerator = (for(x of numbers) x*x)
+
+    // for(let elem of squaresGenerator ){
+    //     condole.log(elem)
+    // }
+
+  </script>
+</body>
+
+</html>
