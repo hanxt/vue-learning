@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  <div id="app">
+      <!-- 登录、注册切换按钮 -->
+      <!-- <a href="" @click.prevent="isLogin=true">登录</a>
+      <a href="" @click.prevent="isLogin=false">注册</a> -->
+
+      <!-- 登录组件和注册组件-->
+      <!-- <login v-if="isLogin"></login>
+      <register v-else="isLogin"></register> -->
+
+      <!-- 点击按钮后，设置变量`comName`为不同的值，
+        下文component标签显示不同的组件 -->
+      <a href="" @click.prevent="comName='login'">登录</a>
+      <a href="" @click.prevent="comName='register'">注册</a>
+      
+      <!-- 此处的`comName`是变量，变量值为组件名称 -->
+      <component :is="comName"></component>
+  </div>
+  <template id="Login">
+      <h3>登录组件</h3>
+  </template>
+  <template id="Register">
+      <h3>注册组件</h3>
+  </template>
+
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+  <script>
+    Vue.component('Login', {
+        template: '#Login'
+    })
+
+    Vue.component('Register', {
+        template: '#Register'
+    })
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+          comName: 'Login'
+        }
+    });
+  </script>
+</body>
+
+</html>

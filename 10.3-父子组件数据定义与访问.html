@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>父子组件的数据定义与访问</title>
+</head>
+
+<body>
+  <div>
+      <!--父子组件的嵌套-->
+      <template id="Child">
+        <div>
+            <p>{{childMessage}}</p>
+            <button @click="parentInfo()">打印父组件信息</button>
+        </div>
+      </template>
+
+      <template id="Parent">
+        <div>
+            <p>{{parentMessage}}</p>
+            <button @click="childInfo()">打印子组件信息</button>
+            <child ref="childRef"></child>
+            <!-- <child></child> -->
+        </div>
+      </template>
+
+      <div id="app2">
+          <parent></parent>
+      </div>
+  </div>
+  
+  
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  
+
+
+  
+  <script>
+      var app2 = new Vue({
+          el: '#app2',
+          components:{
+            Parent:{
+              template: '#Parent',
+              data: function(){
+                return {parentMessage: "我是父组件的数据"}
+              },
+              methods: {
+                childInfo(){
+                  console.log(this.$children[0].childMessage)
+                  console.log(this.$refs.childRef.childMessage)
+                }
+              },
+              components: {
+                Child: {
+                  template: '#Child',
+                  data: function(){
+                    return {childMessage: "我是子组件的数据"}
+                  },
+                  methods: {
+                    parentInfo(){
+                      console.log(this.$parent.parentMessage)
+                    }
+                  }
+                }
+              }
+            }
+          }
+      });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  
+  <div id="app">
+    <child-cpn :child-player="player" :child-message="message"></child-cpn>
+  </div>
+  
+  <template id="ChildCpn">
+    <div>
+      <h2>{{childPlayer}}</h2>
+      <h2>{{childMessage}}</h2>
+    </div>
+  </template>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const ChildCpn = {
+      template: '#ChildCpn',
+      props: ['childPlayer','child-message']
+    }
+  
+    const app = new Vue({
+      el: '#app',
+      data: {
+        player: {
+          name: 'kobe',age: 39
+        },
+        message: '父组件数据->子组件'
+      },
+      components: {
+        ChildCpn
+      }
+    })
+  </script>
+
+
+<script>
+Vue.component('example', {
+  props: {
+    // 基础类型检测 (`null` 意思是任何类型都可以)
+    propA: Number,
+    // 可以是多种类型
+    propB: [String, Number],
+    // 必传属性且必须是字符串类型
+    propC: {
+      type: String,
+      required: true
+    },
+    // 数字，不传就默认值100
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // 数组/对象的默认值应当由一个工厂函数返回
+    propE: {
+      type: Object,
+      default: function () {
+        return { message: 'hello' }
+      }
+    },
+    // 自定义验证函数
+    propF: {
+      validator: function (value) {
+        return value > 10
+      }
+    }
+  }
+})
+</script>
+
+</body>
+
+</html>
