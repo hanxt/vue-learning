@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>嵌套组件</title>
+</head>
+
+<body>
+  <div>
+      <template id="MyComponent">
+          <div>
+            <span>{{count}}</span>
+            <button @click="incr">+</button>
+            <!-- <p>{{message}}</p> -->
+          </div>
+      </template>
+    
+      <div id="app">
+            <my-component></my-component>
+            <my-component></my-component>
+      </div>
+    
+      <!--父子组件的嵌套-->
+      <template id="Child">
+          <p>this is child template</p>
+      </template>
+      <template id="Parent">
+        <div>
+            <p>this is parent template</p>
+            <child></child>
+            <child></child>
+        </div>
+      </template>
+      <div id="app2">
+          <parent></parent>
+      </div>
+  </div>
+  
+  
+  <!--从CDN引入vue.js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  
+
+
+  
+  <script>
+      var app2 = new Vue({
+          el: '#app2',
+          components:{
+            Parent:{
+              template: '#Parent',
+              components: {
+                  'Child': {template: '#Child'},
+              }
+            }
+          }
+      });
+  </script>
+
+
+
+  <script>
+      const app = new Vue({ //初始化一个VUE实例
+        el: '#app',     // 用于页面渲染VUE实例的元素
+        data:{
+          message: "您好"
+        },
+        components:{
+          MyComponent:{
+            template: '#MyComponent',
+            data: function(){
+              return {count: 0}
+            },
+            methods: {
+              incr(){
+                this.count ++
+              }
+            },
+          }
+        }
+      })
+    </script>
+</body>
+
+</html>
