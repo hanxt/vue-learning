@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一个VUE程序</title>
+</head>
+
+<body>
+  
+  <div id="app">
+    <child-cpn @increment="changePCounter" @decrement="changePCounter"></child-cpn>
+    <h2>PCounter: {{pCounter}}</h2>
+  </div>
+  
+  <template id="ChildCpn">
+    <div>
+      <button @click="incr">+1</button>
+      <button @click="decr">-1</button>
+    </div>
+  </template>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const ChildCpn = {
+      template: '#ChildCpn',
+      data(){
+        return {cCounter: 0}
+      },
+      methods:{
+        incr(){
+          this.cCounter++
+          this.$emit('increment',this.cCounter)
+        },
+        decr(){
+          this.cCounter--
+          this.$emit('decrement',this.cCounter)
+        }
+      }
+    }
+  
+    const app = new Vue({
+      el: '#app',
+      data: {
+        pCounter: 0     //父组件的计数器
+      },
+      methods: {
+        changePCounter(counter){
+          this.pCounter = counter
+        }
+      },
+      components: {
+        ChildCpn
+      }
+    })
+  </script>
+
+</body>
+
+</html>
